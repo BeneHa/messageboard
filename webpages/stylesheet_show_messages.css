@@ -1,0 +1,32 @@
+#main_table {
+    width: 90vw;
+    margin: 5vh;
+}
+
+#main_table td,
+#main_table th {
+    border: 5px solid var(--divider);
+    padding: 8px;
+}
+
+#main_table th {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: left;
+    background-color: var(--dark_primary);
+    font-size: 6vh;
+    color: var(--text_primary);
+}
+
+#main_table tr:nth-child(even) {
+    background-color: var(--light_primary);
+}
+
+#main_table tr {
+    height: 15vh;
+}
+
+#main_table td {
+    font-size: 3vh;
+    color: var(--text_primary);
+}

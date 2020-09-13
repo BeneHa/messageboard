@@ -18,7 +18,7 @@ def main(req: func.HttpRequest, enterMessageTemplateBlob: func.InputStream,
 
     # Verfiy name for forbidden characters
     forbidden_character_list = ["/", "\\"]
-    if any(forbidden_character_list) in board_id:
+    if any(f in board_id for f in forbidden_character_list):
         return func.HttpResponse("Der Name enthält ungültige Zeichen. Bitte nur Buchstaben, Zahlen und Leerzeichen verwenden.")
 
     # Check if board_id already exists

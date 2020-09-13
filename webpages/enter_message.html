@@ -1,73 +1,115 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <html>
+
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet_global.css">
+    <script src="https://adlsmessageboard.z1.web.core.windows.net/javascript/functions_global.js"></script>
 
-<style>
+    <style>
+        #header_div {
+            background-color: var(--light_primary);
+        }
 
-    :root {
-        --dark_primary: #00796B;
-        --light_primary: #B2DFDB;
-        --primary: #009688;
-        --text: #FFFFFF;
-        --accent: #FFEB3B;
-        --text_primary: #212121;
-        --text_secondary: #757575;
-        --divider: #BDBDBD;
-      }
+        label {
+            font-size: 6vh;
+            width: 100vw;
+        }
 
-    #header_div {
-        background-color: var(--light_primary);
-    }
+        input {
+            font-size: 3vh;
+            border-radius: 4px;
+        }
 
-</style>
+        #sender_input {
+            width: 50vw;
+        }
+
+        #message_input {
+            width: 80vw;
+            padding-left: 5vw;
+            padding-right: 5vw;
+        }
+
+        #resultFrame {
+
+            border: none;
+            background-color: var(--light_primary);
+            padding: 3%;
+            height: 200;
+            width: 100%;
+        }
+
+        #previewFrame {
+
+            width: 80vw;
+            height: 50vh;
+        }
+    </style>
 
 </head>
 
 <body style="padding: 0px">
 
 
+    <center>
+
+        <h1 class="display-1" style="color:black; padding: 2vh;">Eingabe Nachrichten</h1>
+        <h2 class="display-4" style="color: var(--text_secondary)">Board: {{ board_id }}</h2>
+
+        <p></p>
+        <p></p>
+
+        <form id="enter_message_form" action="http://localhost:7071/api/azfunc_updateBoard" method="post"
+            target="resultFrame">
+            <input type="hidden" name="board_id" value="{{ board_id }}">
+            <label>Von:</label>
+            <p></p>
+            <input type="text" name="sender" id="sender_input">
+            <p></p>
+            <label>Nachricht:</label>
+            <p></p>
+            <input type="text" name="message_text" id="message_input">
+            <p></p>
+            <input type="submit" value="Abschicken" style="font-size: 5vh;">
+
+        </form>
+        <p></p>
+
+
+        <div hidden class="row" id="resultDiv">
+            <div class="col">
+                <p>Ausgabe:</p>
+                <iframe name="resultFrame" id="resultFrame">
+                </iframe>
+            </div>
+        </div>
 
 
 
+        <hr style="margin-top: 10vh; height: 1vh; color: black; background-color: black">
+        <h1 style="color: black; padding: 5vh">Vorschau:</h1>
+
+        <div class="row">
+            <div class="col">
+                <iframe src="{{ iframe_page }}" id="previewFrame"></iframe>
+
+            </div>
+        </div>
 
 
 
+        <script type="text/javascript">
+            document.getElementById("enter_message_form").addEventListener("submit", makeVisible("resultDiv"));
+            document.getElementById("enter_message_form").addEventListener("submit", document.getElementById("previewFrame").contentWindow.location.reload());
 
+        </script>
 
-
-<center>
-<h1>Eingabe Nachrichten</h1>
-<h2>Board: {{ board_id }}</h2>
-
-<hr style="margin-top: 5vh; height: 1vh; color: black; background-color: black">
-
-
-<form id="enter_message_form" action="http://localhost:7071/api/azfunc_updateBoard" method="post" target="resultFrame">
-    <input type="hidden" name="board_id" value="{{ board_id }}">
-    <label>Von:</label>
-    <p></p>
-    <input type="text" name="sender">
-    <p></p>
-    <label>Nachricht:</label>
-    <p></p>
-    <input type="text" name="message_text">
-    <p></p>
-    <input type="submit" value="Abschicken" style="font-size: 6vh;">
-
-</form>
-
-<iframe name="resultFrame"></iframe>
-
-<hr style="margin-top: 10vh; height: 1vh; color: black; background-color: black">
-<h1 style="color: black; padding: 5vh">Vorschau:</h1>
-
-
-<iframe src="{{ iframe_page }}" id="main_page"></iframe>
-</center>
+    </center>
 </body>
+
 </html>

@@ -14,24 +14,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://adlsmessageboard.z1.web.core.windows.net/javascript/functions_global.js"></script>
     <link rel="stylesheet" type="text/css"
-        href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet.css">
+        href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet_global.css">
+
 
     <style>
-        :root {
-            --dark_primary: #00796B;
-            --light_primary: #B2DFDB;
-            --primary: #009688;
-            --text: #FFFFFF;
-            --accent: #FFEB3B;
-            --text_primary: #212121;
-            --text_secondary: #757575;
-            --divider: #BDBDBD;
-        }
-
 
         .navbar-custom {
             background-color: var(--dark_primary);
@@ -68,6 +58,13 @@
 
             border: none;
             background-color: var(--light_primary);
+            padding: 3%;
+            height: 200;
+            width: 100%;
+        }
+
+        #jumbotron_header {
+            padding-top: 15%;
         }
     </style>
 
@@ -76,7 +73,7 @@
 <body>
 
 
-    <nav class="navbar  navbar-expand-sm navbar-custom">
+    <nav class="navbar  navbar-expand-sm navbar-dark fixed-top navbar-custom">
         <a class="navbar-brand" href="#">Messageboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,17 +82,18 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#jumbotron_ubersicht">Übersicht <span
+                <a class="nav-item nav-link" href="#jumbotron_ubersicht">Übersicht <span
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="#jumbotron_anleitung">Anleitung</a>
                 <a class="nav-item nav-link" href="#jumbotron_los">Los geht's</a>
-                <a class="nav-item nav-link disabled" href="#jumbotron_infos">Infos</a>
+                <a class="nav-item nav-link" href="#jumbotron_infos">Infos</a>
             </div>
         </div>
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
             <li class="nav-item">
-                <a class="nav-link p-2" href="https://github.com">
-                    <img src="https://www.w3schools.com/images/lamp.jpg" width="30" height="30">
+                <a class="nav-link p-2" href="https://github.com/BeneHa/messageboard">
+                    <img src="https://icons-for-free.com/iconfiles/png/512/part+1+github-1320568339880199515.png"
+                        width="30" height="30">
                 </a>
             </li>
         </ul>
@@ -136,20 +134,19 @@
     <div class="jumbotron jumbotron-fluid jumbotron_custom" id="jumbotron_anleitung">
         <div class="container">
             <h1 class="display-5">Anleitung</h1>
-            <p>Messageboard generiert euch zwei Websites: eine, mit der ihr Nachrichten sendet, und eine, mit der
+            <p>Das Vorgehen ist recht simpel: gebt in dem Feld unten auf der Seite einen Namen für ein Board ein oder
+                wählt den automatisch generierten. Nutzt dann die Eingabeseite, um Nachrichten abzuschicken, und die
+                Ausgabeseite, um sie anzuzeigen.</p>
+            <p>Bei Problemen kontaktiert mich bitte direkt, das ganze ist ein Hobbyprojekt, daher können Fehler
+                natürlich vorkommen.</p>
         </div>
     </div>
-
-
-
-
-
 
 
     <div class="jumbotron jumbotron-fluid jumbotron_custom" id="jumbotron_los">
         <div class="container">
             <h1 class="display-5">Los geht's</h1>
-            <p></p>
+            <p>Gib hier den Namen für dein Board ein oder nutze einen automatisch generierten Namen.</p>
 
             <form id="board_id_form" action="http://localhost:7071/api/azfunc_createWebpages" method="post"
                 target="resultFrame">
@@ -157,20 +154,56 @@
                 <input type="text" name="board_id" id="board_id">
                 <input type="submit" id="submit_button" value="Generiere Board">
             </form>
-            <p hidden>test</p>
-
-            <iframe hidden name="resultFrame" id="resultFrame" height="40" widht="200">
-            </iframe>
+            <div hidden class="row" id="result_div">
+                <div class="col">
+                    <p>Ausgabe:</p>
+                    <iframe name="resultFrame" id="resultFrame">
+                    </iframe>
+                </div>
+            </div>
         </div>
     </div>
 
     <script type="text/javascript">
-        function makeVisible() {
-            document.getElementById("resultFrame").removeAttribute("hidden");
-        }
-        document.getElementById("board_id_form").addEventListener("click", makeVisible);
-        document.getElementById("board_id").value = Math.random().toString(36).substring(11);
+
+        document.getElementById("board_id_form").addEventListener("submit", makeVisible("result_div"));
+        document.getElementById("board_id").value = Math.random().toString(36).substring(2);
     </script>
 
 
+    <div class="jumbotron jumbotron-fluid jumbotron_custom" id="jumbotron_infos">
+        <div class="container">
+            <h1 class="display-5">Infos</h1>
+            <h5>Wer steckt dahinter?</h5>
+            <p>Benedikt Häuser, 26 Jahre, derzeit Consultant für Data Engineering in München. Das hier ist ein
+                Hobbyprojekt von mir und komplett Open Source, ich habe also keinerlei finanzielles Interesse an der
+                Sache.</p>
+
+            <h5>Was kostet das?</h5>
+            <p>Die Nutzung kostet erstmal nichts, das geht auf meine private Rechnung. Da ich davon ausgehe dass die
+                Anzahl potentieller Nutzer überschaubar ist, bin ich eher froh falls ich jemandem hiermit helfen konnte.
+                Da ich ohnehin billige Technologien nutze und hier keine großen Mengen an Nachrichten verschickt werden,
+                sind die Kosten sehr überschaubar.</p>
+
+            <h5>Für wen sind die Daten einsehbar?</h5>
+            <p>Die generierten Websites sind für jeden sicht- und nutzbar. Daher empfiehlt es sich, die automatisch
+                generierten Namen zu nutzen, da die niemand zufällig entdecken wird.</p>
+
+            <h5>Wofür sollte ich das Board NICHT nutzen?</h5>
+            <p>Das hier ist nicht geeignet, um vertrauliche Daten, Passwörter, Bankdaten etc. zu übertragen! Wie im
+                Punkt zuvor beschrieben ist alles, was ihr hier schreibt, öffentlich einsehbar, wenn jemand euren
+                Boardnamen herausfindet.</p>
+        </div>
+    </div>
+
+
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>
+                <span>Messageboard von Benedikt Häuser.
+                </span>
+                <a href="mailto:benedikt.haeuser@outlook.com">Noch Fragen?</a>
+            </small>
+        </div>
+    </footer>
 </body>
