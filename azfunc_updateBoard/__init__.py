@@ -1,6 +1,6 @@
 import logging
 import azure.functions as func
-from azure.storage.blob import BlobClient, ContentSettings
+from azure.storage.blob import BlobClient, ContentSettings, BlobServiceClient, ContainerClient
 from azure.cosmosdb.table.tableservice import TableService
 import os
 import datetime
@@ -51,6 +51,25 @@ def main(req: func.HttpRequest, showMessageTemplateBlob: func.InputStream, messa
 
     #Add the current item to the message list because it will only be written to the table when this function completed running
     message_list.append({"sender_name": sender, "timestamp": print_time, "message_text": message_text})
+
+    #Read images from storage
+    connection_str = os.environ["blobConnectionString"]
+    blob_service_client = BlobServiceClient.from_connection_string(connection_str)
+
+    container_name = "$web"
+    container_client = blob_service_client.get_container_client(container_name)
+
+    blob_list = container_client.list_blobs(name_starts_with=f"images/{board_id}/")
+    existing_images = sorted([b["name"] for b in blob_list], reverse=True)
+
+    num_images = max(len(existing_images), 3)
+    images_to_show = existing_images[0:num_images]
+
+
+
+
+
+
 
 
     # Render template

@@ -80,15 +80,15 @@
         </form>
         <p></p>
 
-
-        <div hidden class="row" id="resultDiv">
-            <div class="col">
-                <p>Ausgabe:</p>
-                <iframe name="resultFrame" id="resultFrame">
-                </iframe>
+        <div class="container">
+            <div class="row" id="resultDiv" hidden>
+                <div class="col">
+                    <p>Ausgabe:</p>
+                    <iframe name="resultFrame" id="resultFrame">
+                    </iframe>
+                </div>
             </div>
         </div>
-
 
 
         <hr style="margin-top: 10vh; height: 1vh; color: black; background-color: black">
@@ -108,6 +108,20 @@
             document.getElementById("enter_message_form").addEventListener("submit", document.getElementById("previewFrame").contentWindow.location.reload());
 
         </script>
+        <p></p>
+        <p></p>
+
+
+
+
+        <form action="http://localhost:7071/api/azfunc_processImage" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="board_id" value="{{ board_id }}">
+            file1: <input type="file" name="file1"><br>
+            <button type="submit">Abschicken</button>
+        </form>
+
+
+
 
     </center>
 </body>
