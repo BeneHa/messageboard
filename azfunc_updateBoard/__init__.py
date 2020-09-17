@@ -62,13 +62,10 @@ def main(req: func.HttpRequest, showMessageTemplateBlob: func.InputStream, messa
     blob_list = container_client.list_blobs(name_starts_with=f"images/{board_id}/")
     existing_images = sorted([b["name"] for b in blob_list], reverse=True)
 
-    num_images = max(len(existing_images), 3)
-    images_to_show = existing_images[0:num_images]
-
-
-
-
-
+    num_images = min(len(existing_images), 3)
+    images_to_show = existing_images[0 : num_images + 1]
+    images_full_paths = [f"https://adlsmessageboard.z1.web.core.windows.net/" + f  for f in images_to_show]
+    image_items = [{"image_path": p} for p in images_full_paths]
 
 
 
@@ -79,7 +76,7 @@ def main(req: func.HttpRequest, showMessageTemplateBlob: func.InputStream, messa
         show_string_raw = show_string_raw.replace(x, "")
 
     show_template = Template(show_string_raw)
-    rendered_show_template = show_template.render(board_id = board_id, content_items = message_list)
+    rendered_show_template = show_template.render(board_id = board_id, content_items = message_list, image_items = image_items)
 
     logging.info('Template was processed.')
 
