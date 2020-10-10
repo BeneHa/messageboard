@@ -7,3 +7,5 @@ Auf der Website wird eine Board-ID eingegeben, mit der zwei HTML-Seiten erstellt
 Dem Empfänger kann man nun einen Raspberry Pi an z.B. einen Fernseher anschließen, der nur die Ausgabemaske anzeigt. So kann er/sie Nachrichten empfangen, ohne ein neues Gerät bedienen zu müssen.
 
 Entstanden ist das ganze, weil in meiner Familie genau dieses Problem mit meinem Opa aufgetreten ist: er hat noch nie einen PC oder anderes technisches Gerät bedient und kann nur eingeschränkt telefonieren. Mit diesem Board können wir ihm nun auch mal kleinere Nachrichten schicken, ohne gleich vorbei fahren zu müssen - gerade in Corona-Zeiten sehr nützlich.
+
+Die Website ist zu finden auf https://adlsmessageboard.z1.web.core.windows.net/
