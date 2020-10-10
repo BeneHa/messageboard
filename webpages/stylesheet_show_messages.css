@@ -1,6 +1,6 @@
 #main_table {
     width: 90vw;
-    margin: 5vh;
+    margin: 1vh;
 }
 
 #main_table td,
@@ -10,11 +10,11 @@
 }
 
 #main_table th {
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
     text-align: left;
     background-color: var(--dark_primary);
-    font-size: 6vh;
+    font-size: 5vh;
     color: var(--text_primary);
 }
 
@@ -23,10 +23,29 @@
 }
 
 #main_table tr {
-    height: 15vh;
+    height: 12vh;
 }
 
 #main_table td {
     font-size: 3vh;
     color: var(--text_primary);
+}
+
+#heading1 {
+
+    color:black;
+    padding: 1vh;
+    padding-bottom: 0
+}
+
+#heading2 {
+    color: var(--text_secondary);
+    padding: 1vh;
+    margin: 1vh;
+
+}
+
+#carousel {
+    width:80vw;
+    height: 40vh
 }

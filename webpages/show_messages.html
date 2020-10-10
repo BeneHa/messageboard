@@ -3,28 +3,20 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css"
         href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet_global.css">
     <link rel="stylesheet" type="text/css"
         href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet_show_messages.css">
 </head>
 
-<body>
+<body style="height: 100vh">
     <center>
-        <h1 class="display-1" style="color:black; padding: 2vh;">Nachrichtenboard</h1>
-        <h2 class="display-4" style="color: var(--text_secondary)">Board: {{ board_id }}</h2>
+        <h1 class="display-1" id="heading1" >Nachrichtenboard</h1>
+        <h2 class="display-4" id="heading2" >Board: {{ board_id }}</h2>
 
         <table id="main_table">
             <tr>
@@ -44,19 +36,23 @@
 
         </table>
 
-        <div class="carousel slide" data-interval="1000" style="width:80vw; height: 30vh">
-            <div class="carousel-inner">
+        <div class="carousel slide" data-ride="carousel" data-interval="10000" id="carousel" >
+            <div class="carousel-inner" style="height:100%">
 
                 {% for item in image_items %}
 
-              <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                <img class="d-block w-100" src="{{ item.image_path }}">
-              </div>
+                <div class="carousel-item {% if loop.index == 1 %} active {% endif %}" style="height: 100%">
+                    <img class="d-block" src="{{ item.image_path }}" style="height:100%">
+                </div>
 
-              {% endfor %}
+                {% endfor %}
 
             </div>
         </div>
 
     </center>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

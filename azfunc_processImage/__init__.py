@@ -3,6 +3,7 @@ import os
 from azure.storage.blob import BlobClient, ContentSettings, BlobServiceClient, ContainerClient
 from babel.dates import format_date
 import datetime
+import requests
 
 
 import azure.functions as func
@@ -11,8 +12,8 @@ import azure.functions as func
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    image = req.files['file1'].read()
-    image_name = req.files["file1"].filename
+    image = req.files['image'].read()
+    image_name = req.files["image"].filename
     board_id = req.form["board_id"]
     logging.info("Image was read.")
 
@@ -25,6 +26,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("Image was uploaded to BLOB.")
 
 
-
+    requests.post(f"https://funcapp-messageboard.azurewebsites.net/api/azfunc_refreshBoard?board_id={board_id}")
 
     return func.HttpResponse("Foto wurde hochgeladen.", status_code=200)

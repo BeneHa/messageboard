@@ -39,13 +39,18 @@
 
             border: none;
             background-color: var(--light_primary);
-            padding: 3%;
             height: 200;
             width: 100%;
+            width: 80vw;
+            height: 50vh;
         }
 
-        #previewFrame {
+        #resultFrameImages {
 
+            border: none;
+            background-color: var(--light_primary);
+            height: 200;
+            width: 100%;
             width: 80vw;
             height: 50vh;
         }
@@ -64,8 +69,8 @@
         <p></p>
         <p></p>
 
-        <form id="enter_message_form" action="http://localhost:7071/api/azfunc_updateBoard" method="post"
-            target="resultFrame">
+        <form id="enter_message_form" action="https://funcapp-messageboard.azurewebsites.net/api/azfunc_updateBoard"
+            method="post" target="resultFrame">
             <input type="hidden" name="board_id" value="{{ board_id }}">
             <label>Von:</label>
             <p></p>
@@ -80,24 +85,13 @@
         </form>
         <p></p>
 
-        <div class="container">
-            <div class="row" id="resultDiv" hidden>
-                <div class="col">
+        <div class="container" style="height: 5vh">
+            <div class="row" id="resultDiv" hidden style="height: 100%">
+                <div class="col" style="height: 100%">
                     <p>Ausgabe:</p>
-                    <iframe name="resultFrame" id="resultFrame">
+                    <iframe name="resultFrame" id="resultFrame" style="height: 100%">
                     </iframe>
                 </div>
-            </div>
-        </div>
-
-
-        <hr style="margin-top: 10vh; height: 1vh; color: black; background-color: black">
-        <h1 style="color: black; padding: 5vh">Vorschau:</h1>
-
-        <div class="row">
-            <div class="col">
-                <iframe src="{{ iframe_page }}" id="previewFrame"></iframe>
-
             </div>
         </div>
 
@@ -105,23 +99,37 @@
 
         <script type="text/javascript">
             document.getElementById("enter_message_form").addEventListener("submit", makeVisible("resultDiv"));
-            document.getElementById("enter_message_form").addEventListener("submit", document.getElementById("previewFrame").contentWindow.location.reload());
+            document.getElementById("enter_message_form").addEventListener("submit", document.getElementById("resultFrame").contentWindow.location.reload());
 
         </script>
-        <p></p>
-        <p></p>
 
 
 
-
-        <form action="http://localhost:7071/api/azfunc_processImage" method="POST" enctype="multipart/form-data">
+        <h2 style="padding-top: 5%">Bild hochladen</h2>
+        <form id="image_form" action="https://funcapp-messageboard.azurewebsites.net/api/azfunc_processImage"
+            method="POST" target="resultFrameImages" enctype="multipart/form-data">
             <input type="hidden" name="board_id" value="{{ board_id }}">
-            file1: <input type="file" name="file1"><br>
-            <button type="submit">Abschicken</button>
+            bild: <input type="file" name="image"><br>
+            <button type="submit" style="margin-top: 3%; margin-bottom: 3%">Abschicken</button>
         </form>
 
 
+        <div class="container" style="height: 5vh">
+            <div class="row" id="resultDivImages" hidden style="height: 100%">
+                <div class="col" style="height: 100%">
+                    <p>Ausgabe:</p>
+                    <iframe name="resultFrameImages" id="resultFrameImages" style="height: 100%">
+                    </iframe>
+                </div>
+            </div>
+        </div>
 
+
+        <script type="text/javascript">
+            document.getElementById("image_form").addEventListener("submit", makeVisible("resultDivImages"));
+            document.getElementById("image_form").addEventListener("submit", document.getElementById("resultFrameImages").contentWindow.location.reload());
+
+        </script>
 
     </center>
 </body>
