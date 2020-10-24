@@ -11,6 +11,10 @@
 
 #html, body {
     background-color: white;
+    overflow-x: hidden; 
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 #main_page {
@@ -18,3 +22,46 @@
     height: 80vh;
 }
 
+.navbar-custom {
+    background-color: var(--dark_primary);
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: var(--text_primary);
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: var(--text_primary);
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+body {
+    padding: 0px;
+    background-color: var(--light_primary)
+}
+
+.jumbotron_custom {
+    background-color: white;
+    margin-bottom: 1%;
+}
+
+#resultFrame {
+
+    border: none;
+    background-color: var(--light_primary);
+    padding: 3%;
+    height: 200;
+    width: 100%;
+}
+
+#jumbotron_header {
+    padding-top: 15%;
+}

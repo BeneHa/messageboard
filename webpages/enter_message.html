@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<html>
+<html style="overflow-x: hidden">
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -9,52 +9,8 @@
     <link rel="stylesheet" type="text/css"
         href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet_global.css">
     <script src="https://adlsmessageboard.z1.web.core.windows.net/javascript/functions_global.js"></script>
-
-    <style>
-        #header_div {
-            background-color: var(--light_primary);
-        }
-
-        label {
-            font-size: 6vh;
-            width: 100vw;
-        }
-
-        input {
-            font-size: 3vh;
-            border-radius: 4px;
-        }
-
-        #sender_input {
-            width: 50vw;
-        }
-
-        #message_input {
-            width: 80vw;
-            padding-left: 5vw;
-            padding-right: 5vw;
-        }
-
-        #resultFrame {
-
-            border: none;
-            background-color: var(--light_primary);
-            height: 200;
-            width: 100%;
-            width: 80vw;
-            height: 50vh;
-        }
-
-        #resultFrameImages {
-
-            border: none;
-            background-color: var(--light_primary);
-            height: 200;
-            width: 100%;
-            width: 80vw;
-            height: 50vh;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css"
+        href="https://adlsmessageboard.z1.web.core.windows.net/stylesheets/stylesheet_enter_messages.css">
 
 </head>
 
@@ -63,13 +19,13 @@
 
     <center>
 
-        <h1 class="display-1" style="color:black; padding: 2vh;">Eingabe Nachrichten</h1>
-        <h2 class="display-4" style="color: var(--text_secondary)">Board: {{ board_id }}</h2>
+        <h1 class="display-1" id="heading_1" >Eingabe Nachrichten</h1>
+        <h2 class="display-4" id="heading_2">Board: {{ board_id }}</h2>
 
         <p></p>
         <p></p>
 
-        <form id="enter_message_form" action="https://funcapp-messageboard.azurewebsites.net/api/azfunc_updateBoard"
+        <form id="enter_message_form" class="input_form" action="https://funcapp-messageboard.azurewebsites.net/api/azfunc_updateBoard"
             method="post" target="resultFrame">
             <input type="hidden" name="board_id" value="{{ board_id }}">
             <label>Von:</label>
@@ -85,7 +41,7 @@
         </form>
         <p></p>
 
-        <div class="container" style="height: 5vh">
+        <div class="container">
             <div class="row" id="resultDiv" hidden style="height: 100%">
                 <div class="col" style="height: 100%">
                     <p>Ausgabe:</p>
@@ -105,16 +61,16 @@
 
 
 
-        <h2 style="padding-top: 5%">Bild hochladen</h2>
-        <form id="image_form" action="https://funcapp-messageboard.azurewebsites.net/api/azfunc_processImage"
+        <h1 id="heading_bild" >Bild hochladen</h2>
+        <form id="image_form" class="input_form" action="https://funcapp-messageboard.azurewebsites.net/api/azfunc_processImage"
             method="POST" target="resultFrameImages" enctype="multipart/form-data">
             <input type="hidden" name="board_id" value="{{ board_id }}">
-            bild: <input type="file" name="image"><br>
+            <input type="file" name="image" style="font-size: 1.5vh"><br>
             <button type="submit" style="margin-top: 3%; margin-bottom: 3%">Abschicken</button>
         </form>
 
 
-        <div class="container" style="height: 5vh">
+        <div class="container">
             <div class="row" id="resultDivImages" hidden style="height: 100%">
                 <div class="col" style="height: 100%">
                     <p>Ausgabe:</p>

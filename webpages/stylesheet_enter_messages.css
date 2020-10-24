@@ -1,0 +1,55 @@
+#header_div {
+    background-color: var(--light_primary);
+}
+
+label {
+    font-size: 4vh;
+    width: 100vw;
+}
+
+input {
+    font-size: 3vh;
+    border-radius: 4px;
+}
+
+#sender_input {
+    width: 50vw;
+}
+
+#message_input {
+    width: 80vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+
+#resultFrameImages {
+
+    border: none;
+    background-color: var(--light_primary);
+    height: 200;
+    width: 100%;
+    width: 80vw;
+    height: 50vh;
+}
+
+.input_form {
+    background-color: white;
+    padding: 3%;
+}
+
+#heading_1 {
+    color:black;
+    padding: 2vh;
+    background-color:var(--dark_primary);
+}
+
+#heading_2 {
+    color: var(--text_secondary);
+}
+
+#heading_bild {
+    padding: 3%;
+    background-color: var(--dark_primary);
+    margin: 0%;
+}
