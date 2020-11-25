@@ -45,7 +45,23 @@ def main(req: func.HttpRequest, showMessageTemplateBlob: func.InputStream) -> fu
     message_list = [m for m in messages_today]
     for m in message_list:
         m.pop("etag")
-    message_list = sorted(message_list, key=itemgetter("timestamp"))
+
+    message_texts = [d["message_text"] for d in message_list]
+    message_senders = [d["sender_name"] for d in message_list]
+    message_timestamps = [d["timestamp"] for d in message_list]
+
+
+    message_list_unique = []
+    distinct_message_texts = list(set(message_texts))
+    for t in distinct_message_texts:
+        messages_this_sender = [d for d  in message_list if d["message_text"] == t]
+        text_sender = max([d["sender_name"] for d in messages_this_sender])
+        text_timestamp = max([d["timestamp"] for d in messages_this_sender])
+        message_list_unique.append({"message_text": t, "sender_name": text_sender, "timestamp": text_timestamp})
+
+
+    
+    message_list = sorted(message_list_unique, key=itemgetter("timestamp"))
 
     #Read images from storage
     connection_str = os.environ["blobConnectionString"]
